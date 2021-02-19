@@ -1,0 +1,33 @@
+version: '3'
+# Declaração dos serviços.
+services:
+  # Configuração do container do Postgres.
+  db:
+    container_name: workalt-db
+    # Nome da imagem a ser buscada.
+    image: "postgres"
+    # Permite escolher reiniciar caso o serviço pare.
+    restart: "always"
+    # Especificação do expose das portas.
+    ports:
+      - '5435:5432'
+    # Criação das váriaveis de ambiente.
+    environment:
+      # Senha para o banco.
+      POSTGRES_PASSWORD: docker
+      # Usuário
+      POSTGRES_USER: docker
+      #Nome do Banco
+      POSTGRES_DB: workalt
+    volumes:
+      - db-data:/db/data/
+
+  # web:
+  #   build: .
+  #   network_mode: 'bridge'
+  #   ports:
+  #     - '8080:8080'
+
+volumes:
+  db-data:
+
